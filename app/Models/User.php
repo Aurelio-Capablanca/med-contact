@@ -3,13 +3,14 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
+    /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
     /**
@@ -19,8 +20,11 @@ class User extends Authenticatable
      */
 
     protected $table = 'users';
-    protected $primaryKey = 'idUsers';
+    protected $primaryKey = 'user_id';
     public $timestamps = false;
+    public $incrementing = true;
+    protected $keyType = 'int';
+    protected $authPasswordName = 'passUser';
     protected $fillable = [
         'nameUsers',
         'lastnameUsers',
@@ -34,9 +38,17 @@ class User extends Authenticatable
         return $this->passUser;
     }
 
-    public function getAuthIdentifier(){
-        return 'emailUser';
+    public function getAuthIdentifierName()
+    {
+        return 'user_id';
     }
+
+    public function getAuthIdentifier()
+    {
+        return $this->user_id;
+    }
+
+
     /**
      * The attributes that should be hidden for serialization.
      *

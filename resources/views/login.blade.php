@@ -1,29 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body>
-<h1>Login</h1>
+<!-- [Head] start -->
 
+<head>
+    <title>Login | Mantis Bootstrap 5 Admin Template</title>
+    <!-- [Meta] -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description"
+          content="Mantis is made using Bootstrap 5 design framework. Download the free admin template & use it for your project.">
+    <meta name="keywords"
+          content="Mantis, Dashboard UI Kit, Bootstrap 5, Admin Template, Admin Dashboard, CRM, CMS, Bootstrap Admin Template">
+    <meta name="author" content="CodedThemes">
+
+    <!-- [Favicon] icon -->
+    <link rel="icon" href="{{ asset('/assets/images/favicon.svg') }}" type="image/x-icon">
+    <!-- [Tabler Icons] https://tablericons.com -->
+    <link rel="stylesheet" href="{{ asset('/assets/fonts/tabler-icons.min.css')}}">
+    <!-- [Feather Icons] https://feathericons.com -->
+    <link rel="stylesheet" href="{{asset('/assets/fonts/feather.css')}}">
+    <!-- [Font Awesome Icons] https://fontawesome.com/icons -->
+    <link rel="stylesheet" href="{{asset('/assets/fonts/fontawesome.css')}}">
+    <!-- [Material Icons] https://fonts.google.com/icons -->
+    <link rel="stylesheet" href="{{asset('/assets/fonts/material.css')}}">
+    <!-- [Template CSS Files] -->
+    <link rel="stylesheet" href="{{asset('/assets/css/style.css')}}" id="main-style-link">
+    <link rel="stylesheet" href="{{asset('/assets/css/style-preset.css')}}">
+
+</head>
+<!-- [Head] end -->
+<!-- [Body] Start -->
 @if(session('error'))
     <div style="color: red;">
         {{ session('error') }}
     </div>
 @endif
+<body>
+<!-- [ Pre-loader ] start -->
+<div class="loader-bg">
+    <div class="loader-track">
+        <div class="loader-fill"></div>
+    </div>
+</div>
+<!-- [ Pre-loader ] End -->
 
-<form method="POST" action="{{ route('login') }}">
-    @csrf
+<div class="auth-main">
+    <div class="auth-wrapper v3">
+        <div class="auth-form">
+            <div class="auth-header">
+                <a href="#"><img src="{{asset('/assets/images/logo-dark.svg')}}" alt="img"></a>
+            </div>
+            {{--  start form--}}
+            <form method="POST" action="{{route('login')}}">
+                @csrf
+                <div class="card my-5">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-end mb-4">
+                            <h3 class="mb-0"><b>Login</b></h3>
+                            <a href="#" class="link-primary">Don't have an account?</a>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Email Address">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                        </div>
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            {{--  end form--}}
+            <div class="auth-footer row">
+                <!-- <div class=""> -->
+                <div class="col my-1">
+                    <p class="m-0">Copyright © <a href="#">Codedthemes</a></p>
+                </div>
+                <div class="col-auto my-1">
+                    <ul class="list-inline footer-link mb-0">
+                        <li class="list-inline-item"><a href="#">Home</a></li>
+                        <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                        <li class="list-inline-item"><a href="#">Contact us</a></li>
+                    </ul>
+                </div>
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- [ Main Content ] end -->
+<!-- Required Js -->
+<script src="{{asset('/assets/js/plugins/popper.min.js')}}"></script>
+<script src="{{asset('/assets/js/plugins/simplebar.min.js')}}"></script>
+<script src="{{asset('/assets/js/plugins/bootstrap.min.js')}}"></script>
+<script src="{{asset('/assets/js/fonts/custom-font.js')}}"></script>
+<script src="{{asset('/assets/js/pcoded.js')}}"></script>
+<script src="{{asset('/assets/js/plugins/feather.min.js')}}"></script>
 
-    <label for="email">Email:</label>
-    <input type="text" name="email" id="email"><br><br>
-
-    <label for="password">Password:</label>
-    <input type="password" name="password" id="password"><br><br>
-
-    <button type="submit">Login</button>
-</form>
 </body>
+<!-- [Body] end -->
 </html>
