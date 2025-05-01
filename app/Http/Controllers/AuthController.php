@@ -11,13 +11,15 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
 
-    public function login(Request $request){
-        $user = User::where('emailUser',$request->email)->first();
-        if(!$user || !Hash::check($request->password,$user->passUser)){
+    public function login(Request $request)
+    {
+        $user = User::where('emailUser', $request->email)->first();
+        if (!$user || !Hash::check($request->password, $user->passUser)) {
             return response()->json(['message'=>'Invalid Credentials'],401);
         }
         Auth::login($user);
-        return response()->json(['message'=>'Logged in successfully'],200);
+
+        return redirect()->intended('/dashboard');
     }
 
 }

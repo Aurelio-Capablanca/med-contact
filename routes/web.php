@@ -8,4 +8,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/test',[TestController::class,'index']);
-Route::post('/login', [AuthController::class, 'login']);
+Route::get('/login', function () {
+    return view('login');
+})->name('login.form');
+
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    });
+});
