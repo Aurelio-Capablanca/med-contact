@@ -2,16 +2,20 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+
 use Database\Factories\UserFactory;
+use Illuminate\Database\Eloquent\Concerns\HasAttributes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+
+
 
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasAttributes ,HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -20,12 +24,32 @@ class User extends Authenticatable
      */
 
     protected $table = 'users';
+    /**
+     * @var string
+     */
     protected $primaryKey = 'user_id';
+    /**
+     * @var bool
+     */
     public $timestamps = false;
+    /**
+     * @var bool
+     */
     public $incrementing = true;
+    /**
+     * @var string
+     */
     protected $keyType = 'int';
+    /**
+     * @var string
+     */
     protected $authPasswordName = 'passUser';
+
+    /**
+     * @var string[]
+     */
     protected $fillable = [
+        'user_id',
         'nameUsers',
         'lastnameUsers',
         'emailUser',
@@ -33,42 +57,27 @@ class User extends Authenticatable
         'typeUser'
     ];
 
+    /**
+     * @return mixed|string
+     */
     public function getAuthPassword()
     {
         return $this->passUser;
     }
 
+    /**
+     * @return string
+     */
     public function getAuthIdentifierName()
     {
         return 'user_id';
     }
 
+    /**
+     * @return mixed
+     */
     public function getAuthIdentifier()
     {
         return $this->user_id;
     }
-
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
-//    protected $hidden = [
-//        'password',
-//        'remember_token',
-//    ];
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-//    protected function casts(): array
-//    {
-//        return [
-//            'email_verified_at' => 'datetime',
-//            'password' => 'hashed',
-//        ];
-//    }
 }

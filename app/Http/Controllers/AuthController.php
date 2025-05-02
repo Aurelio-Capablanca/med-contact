@@ -21,16 +21,6 @@ class AuthController extends Controller
         $request->session()->regenerate();
         //dd(Auth::user());
         return redirect()->intended('/dashboard');
-//        $credentials = [
-//            'emailUser' => $request->email,
-//            'password' => $request->password
-//        ];
-//        if (Auth::attempt($credentials)) {
-//            $request->session()->regenerate();
-//            dd(Auth::user());
-//            return redirect()->intended('/dashboard');
-//        }
-//        return redirect()->back()->with('error', 'Invalid Credentials');
     }
 
 }
