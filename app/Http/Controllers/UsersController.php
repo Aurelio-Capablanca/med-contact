@@ -3,26 +3,36 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UsersRequest;
+use App\Models\TypeUser;
 use App\Models\User;
-use Users;
 
 class UsersController extends Controller
 {
 
-    public function createUsers(UsersRequest $request): \Illuminate\Http\JsonResponse
+    // UI Retrievals
+
+    public function index()
     {
-        User::create($request->validated());
-        return response()->json(['status' => 'success', 'message' => 'User created'], 200);
+        $type_users = TypeUser::all();
+        return view('users', compact('type_users'));
     }
 
 
-    public function updateUsers(UsersRequest $request, $id): \Illuminate\Http\JsonResponse
+    // Logical Operations
+
+    public function createUsers(UsersRequest $request)
+    {
+        User::create($request->validated());
+        response()->json(['status' => 'success', 'message' => 'User created'], 200);
+    }
+
+
+    public function updateUsers(UsersRequest $request, $id)
     {
         $user = User::findOrFail($id);
         $user->update($request->validated());
-        return response()->json(['status' => 'success', 'message' => 'User updated'], 200);
+        response()->json(['status' => 'success', 'message' => 'User updated'], 200);
     }
-
 
 
 }
