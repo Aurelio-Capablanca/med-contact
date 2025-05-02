@@ -33,10 +33,6 @@
     <link rel="icon" href="{{ asset('/assets/images/favicon.svg') }}" type="image/x-icon">
     <!-- [Tabler Icons] https://tablericons.com -->
     <link rel="stylesheet" href="{{ asset('/assets/fonts/tabler-icons.min.css')}}">
-    <!-- [Feather Icons] https://feathericons.com -->
-    <link rel="stylesheet" href="{{asset('/assets/fonts/feather.css')}}">
-    <!-- [Font Awesome Icons] https://fontawesome.com/icons -->
-    <link rel="stylesheet" href="{{asset('/assets/fonts/fontawesome.css')}}">
     <!-- [Material Icons] https://fonts.google.com/icons -->
     <link rel="stylesheet" href="{{asset('/assets/fonts/material.css')}}">
     <!-- [Template CSS Files] -->
@@ -484,7 +480,6 @@
 <script src="{{asset('/assets/js/plugins/bootstrap.min.js')}}"></script>
 <script src="{{asset('/assets/js/fonts/custom-font.js')}}"></script>
 <script src="{{asset('/assets/js/pcoded.js')}}"></script>
-<script src="{{asset('/assets/js/plugins/feather.min.js')}}"></script>
 
 </body>
 <!-- [Body] end -->
