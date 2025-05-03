@@ -70,7 +70,7 @@
                                 <option value="">Select User Type</option>
                                 @foreach($type_users as $type)
                                     <option value="{{ $type->idTypeUsers }}"
-                                        {{ old('typeUser') == $type->idTypeUsers ? 'selected' : '' }}>
+                                        {{ 'selected' }}>
                                         {{ $type->typeUser }}
                                     </option>
                                 @endforeach
@@ -84,6 +84,31 @@
                             <button type="submit" class="btn btn-primary">Create User</button>
                         </div>
                     </form>
+                </div>
+                <div class="card-body">
+                    <div class="col s12 m12 12">
+                        <table class="responsive-table">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Lastname</th>
+                                <th>Email</th>
+                                <th>Tipo</th>
+                                <th class="actions-column">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tbody-rows">
+                            @foreach($users as  $user)
+                                <tr>
+                                    <td>{{$user->nameUsers}}</td>
+                                    <td>{{$user->lastnameUsers}}</td>
+                                    <td>{{$user->emailUser}}</td>
+                                    <td>{{$user->typeUser}}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
