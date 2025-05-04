@@ -25,10 +25,10 @@ class UsersController extends Controller
 
     // Logical Operations
 
-    public function createUsers(UsersRequest $request): void
+    public function createUsers(UsersRequest $request)
     {
         User::create($request->validated());
-        response()->json(['status' => 'success', 'message' => 'User created'], 200);
+        return redirect()->route('users')->with('success', 'User created');
     }
 
 
