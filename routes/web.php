@@ -45,7 +45,9 @@ Route::middleware('web')->group(function () {
           Route::get('/doctors',
           [DoctorController::class, 'index'])
           ->name('doctors.form');
-
+          Route::post('/create-doctor',
+          [DoctorController::class, 'createDoctors'])
+          ->name('create-doctor');
 
 //        DOCTORS
     });

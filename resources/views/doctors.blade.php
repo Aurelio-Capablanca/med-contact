@@ -68,8 +68,7 @@
                     <h5 class="modal-title" id="createDoctorModalLabel">Create New User</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                {{--  {{ route('create-user') }}--}}
-                <form method="POST" action="">
+                <form method="POST" action="{{ route('create-doctor') }}">
                     <div class="modal-body">
                         @csrf
                         <div class="row">

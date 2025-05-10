@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DoctorRequest;
 use App\Models\Doctors;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -20,6 +21,10 @@ class DoctorController
 
 
     // Logical Operations
-    
+    public function createDoctors(DoctorRequest $request)
+    {
+        Doctors::create($request->validated());
+        return redirect()->route('doctors.form')->with('success', 'Doctor Created');
+    }
 
 }

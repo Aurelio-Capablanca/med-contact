@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use  Illuminate\Validation\Rule;
 
 class DoctorRequest extends FormRequest
 {
@@ -17,7 +18,11 @@ class DoctorRequest extends FormRequest
         return [
             'nameDoctor' => 'required|string|max:35',
             'lastnameDoctor' => 'required|string|max:35',
-            'emailDoctor' => 'required|string|email|max:100|unique:doctors',
+            'emailDoctor' => ['required',
+                'string',
+                'email',
+                'unique:mysql_logic.Doctors,emailDoctor'
+            ],
             'phoneDoctor' => 'required|string|min:8',
             'descriptionDoctor' => 'required|string|max:1500'
         ];
