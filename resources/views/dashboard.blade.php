@@ -8,7 +8,7 @@
                     <h5>Hello card</h5>
                 </div>
                 <div class="card-body">
-                    <h1>Welcome, ></h1>
+                    <h1>Welcome, {{Auth::user()->nameUsers . ' ' . Auth::user()->lastnameUsers }}</h1>
                     <!-- Your dashboard content here -->
                 </div>
             </div>

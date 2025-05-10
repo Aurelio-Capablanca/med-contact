@@ -23,13 +23,18 @@ Route::middleware('web')->group(function () {
         Route::get('/dashboard', function () {
             return view('dashboard');
         })->name('dashboard.form');
-
-//        Route::get('/users', function () {
-//            return view('users');
-//        })->name('users.form');
-        Route::get('/users', [UsersController::class, 'index'])->name('users.form');
-
+        Route::get('/users',
+            [UsersController::class, 'index'])
+            ->name('users.form');
+        Route::get('/edit-users/{id}',
+            [UsersController::class, 'retrieveModal'])
+            ->name('edit-user.modal');
         Route::post('/create-user',
-            [UsersController::class, 'createUsers'])->name('create-user');
+            [UsersController::class, 'createUsers'])
+            ->name('create-user');
+        Route::post('/update-user/{id}',
+            [UsersController::class, 'updateUsers'])
+            ->name('update-user');
+
     });
 });
