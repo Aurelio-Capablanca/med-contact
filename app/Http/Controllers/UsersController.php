@@ -17,7 +17,7 @@ class UsersController extends Controller
     public function index(): View|Application
     {
         $type_users = TypeUser::all();
-        $users = DB::table('users', 'u')->select('u.user_id','nameUsers', 'passUser' ,'lastnameUsers', 'emailUser', 'tu.typeUser')
+        $users = DB::table('users', 'u')->select('u.user_id', 'nameUsers', 'passUser', 'lastnameUsers', 'emailUser', 'tu.typeUser')
             ->join('typeUsers as tu', 'tu.idTypeUsers', '=', 'u.typeUser')->get();
         return view('users', compact('type_users', 'users'));
     }
@@ -39,7 +39,7 @@ class UsersController extends Controller
     public function createUsers(UsersRequest $request): RedirectResponse
     {
         User::create($request->validated());
-        return redirect()->route('users')->with('success', 'User Created');
+        return redirect()->route('users.form')->with('success', 'User Created');
     }
 
     public function updateUsers(UsersRequest $request, $id): RedirectResponse
@@ -51,6 +51,13 @@ class UsersController extends Controller
     }
 
 
+    public function deleteUser($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->route('users.form')
+            ->with('success', 'User Deleted');
+    }
 
 
 }

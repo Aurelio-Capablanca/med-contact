@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,7 @@ Route::middleware('web')->group(function () {
         Route::get('/dashboard', function () {
             return view('dashboard');
         })->name('dashboard.form');
+//        USERS
         Route::get('/users',
             [UsersController::class, 'index'])
             ->name('users.form');
@@ -35,6 +37,16 @@ Route::middleware('web')->group(function () {
         Route::post('/update-user/{id}',
             [UsersController::class, 'updateUsers'])
             ->name('update-user');
+        Route::delete('/delete-user/{id}',
+            [UsersController::class, 'deleteUser'])
+            ->name('delete-user');
+//        USERS
+//        DOCTORS
+          Route::get('/doctors',
+          [DoctorController::class, 'index'])
+          ->name('doctors.form');
 
+
+//        DOCTORS
     });
 });
