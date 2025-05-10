@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UsersRequest;
 use App\Models\TypeUser;
 use App\Models\User;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
@@ -23,7 +24,7 @@ class UsersController extends Controller
     }
 
 
-    public function retrieveModal($id)
+    public function retrieveModal($id): View|Factory
     {
         $user = DB::table('users', 'u')
             ->select('u.*', 'tu.typeUser')
@@ -39,7 +40,8 @@ class UsersController extends Controller
     public function createUsers(UsersRequest $request): RedirectResponse
     {
         User::create($request->validated());
-        return redirect()->route('users.form')->with('success', 'User Created');
+        return redirect()->route('users.form')
+            ->with('success', 'User Created');
     }
 
     public function updateUsers(UsersRequest $request, $id): RedirectResponse

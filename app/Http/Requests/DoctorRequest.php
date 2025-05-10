@@ -21,7 +21,8 @@ class DoctorRequest extends FormRequest
             'emailDoctor' => ['required',
                 'string',
                 'email',
-                'unique:mysql_logic.Doctors,emailDoctor'
+                Rule::unique('mysql_logic.Doctors', 'emailDoctor')
+                    ->ignore($this->route('id'), 'idDoctor')
             ],
             'phoneDoctor' => 'required|string|min:8',
             'descriptionDoctor' => 'required|string|max:1500'

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Users')
+@section('title', 'Doctors')
 @section('content')
     <div class="row">
         <div class="col-sm-12">
@@ -31,11 +31,10 @@
                                     <td>{{$doctor->emailDoctor}}</td>
                                     <td>{{$doctor->phoneDoctor}}</td>
                                     <td>
-                                        {{-- {{ route('edit-user.modal', $user->idDoctor) }} --}}
-                                        <a href=""
+                                        <a href="{{ route('edit-doctor.modal', $doctor->idDoctor) }}"
                                            class="btn btn-sm btn-info"
                                            data-bs-toggle="modal"
-                                           id="editUsers"
+                                           id="editDoctors"
                                            data-bs-target="#editDoctorModal">
                                             Edit
                                         </a>
@@ -65,7 +64,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="createDoctorModalLabel">Create New User</h5>
+                    <h5 class="modal-title" id="createDoctorModalLabel">Create New Doctor</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form method="POST" action="{{ route('create-doctor') }}">
@@ -140,7 +139,7 @@
     </div>
 
     <!-- Edit User Modal -->
-    <div class="modal fade" id="editUserModal" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="editDoctorModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg"></div>
     </div>
 
@@ -157,7 +156,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const editModal = document.getElementById('editDoctorModal');
-            // const editForm = document.getElementById('editUserForm');
+            const editForm = document.getElementById('editUserForm');
             editModal.addEventListener('show.bs.modal', function (event) {
                 const button = event.relatedTarget;
                 const url = button.getAttribute('href');

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UsersRequest extends FormRequest
 {
@@ -24,7 +25,11 @@ class UsersRequest extends FormRequest
         return [
             'nameUsers' => 'required|string|max:50',
             'lastnameUsers' => 'required|string|max:50',
-            'emailUser' => 'required|string|email|max:50|unique:users',
+            'emailUser' => [
+                'required',
+                'email',
+                Rule::unique('users', 'emailUser')->ignore($this->route('id'), 'user_id')
+            ],
             'passUser' => 'required|string|min:8',
             'typeUser' => 'required|integer'
         ];
