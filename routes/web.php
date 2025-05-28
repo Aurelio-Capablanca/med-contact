@@ -18,6 +18,10 @@ Route::middleware('web')->group(function () {
         return view('login');
     })->name('login.form');
 
+    Route::get('/public/dashboard', function () {
+        return view('/public/public_view');
+    })->name('public_view.form');
+
     Route::post('/login', [AuthController::class, 'login'])->name('login');
 
     Route::middleware('auth')->group(function () {
