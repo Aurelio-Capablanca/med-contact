@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\PublicController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -18,13 +19,13 @@ Route::middleware('web')->group(function () {
         return view('login');
     })->name('login.form');
 
-    Route::get('/public/dashboard', function () {
-        return view('/public/public_view');
-    })->name('public_view.form');
+    Route::get('/public/dashboard/{page?}',
+        [PublicController::class, 'index'])
+        ->name('public_view.form');
 
     Route::post('/login', [AuthController::class, 'login'])->name('login');
 
-    Route::middleware('auth')->group(function () {
+    Route::middleware('auth')->group(function () {//For protected URL's
         Route::get('/dashboard', function () {
             return view('dashboard');
         })->name('dashboard.form');
@@ -50,22 +51,22 @@ Route::middleware('web')->group(function () {
             ->name('delete-user');
 //        USERS
 //        DOCTORS
-          //get Index
-          Route::get('/doctors',
-          [DoctorController::class, 'index'])
-          ->name('doctors.form');
-          // create
-          Route::post('/create-doctor',
-          [DoctorController::class, 'createDoctors'])
-          ->name('create-doctor');
-          // get one
-          Route::get('/edit-doctors/{id}',
-              [DoctorController::class, 'retrieveModal']
-          )->name('edit-doctor.modal');
-          // update doctor
-          Route::put('/update-doctor/{id}',
-              [DoctorController::class, 'updateDoctors']
-          )->name('update-doctor');
+        //get Index
+        Route::get('/doctors',
+            [DoctorController::class, 'index'])
+            ->name('doctors.form');
+        // create
+        Route::post('/create-doctor',
+            [DoctorController::class, 'createDoctors'])
+            ->name('create-doctor');
+        // get one
+        Route::get('/edit-doctors/{id}',
+            [DoctorController::class, 'retrieveModal']
+        )->name('edit-doctor.modal');
+        // update doctor
+        Route::put('/update-doctor/{id}',
+            [DoctorController::class, 'updateDoctors']
+        )->name('update-doctor');
 //        DOCTORS
     });
 });
