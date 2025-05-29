@@ -18,13 +18,13 @@
                 <li class="pc-item">
                     <a href="{{ route('users.form') }}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-brand-chrome"></i></span>
-                        <span class="pc-mtext">Users</span>
+                        <span class="pc-mtext">Medical Market</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="{{ route('doctors.form') }}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-brand-chrome"></i></span>
-                        <span class="pc-mtext">Doctors</span>
+                        <span class="pc-mtext">Doctor Directory</span>
                     </a>
                 </li>
             </ul>

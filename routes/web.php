@@ -23,6 +23,10 @@ Route::middleware('web')->group(function () {
         [PublicController::class, 'index'])
         ->name('public_view.form');
 
+    Route::post('/public/details',
+        [PublicController::class, 'details'])
+        ->name('public.details');
+
     Route::post('/login', [AuthController::class, 'login'])->name('login');
 
     Route::middleware('auth')->group(function () {//For protected URL's
