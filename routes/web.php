@@ -23,6 +23,10 @@ Route::middleware('web')->group(function () {
         [PublicController::class, 'index'])
         ->name('public_view.form');
 
+    Route::post('/public/search',
+        [PublicController::class, 'searcher'])
+        ->name('public.search');
+
     Route::post('/public/details',
         [PublicController::class, 'details'])
         ->name('public.details');

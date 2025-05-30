@@ -22,11 +22,24 @@ class PublicController
         ]);
     }
 
-    public function searcher(Request $search, int $page = 1): View|Application|Factory
+    public function searcher(Request $request, int $page = 1): View|Application|Factory
     {
-        $contents = $this->getDataFromRequesting("WalmartSearcher-Pharma/index-pageable/" . $page) ?? [];
+        $content_search = array();
+        $term = $request->input('data');
+        $walmart_data = $this->getDataFromRequesting("WalmartSearcher-Pharma/search-term/" . $term) ?? [];
+        $economicas_data = $this->getDataFromRequesting("FarmaciasEconomicas/search-by/" . $term . "/0/" . $page . "/12") ?? [];
+        $san_nicolas_data = $this->getDataFromRequesting("SanNicolas/search-term/" . $term) ?? [];
+        foreach ($walmart_data as $data){
+            array_push($content_search, $data);
+        }
+        foreach ($economicas_data as $data){
+            array_push($content_search, $data);
+        }
+        foreach ($san_nicolas_data as $data){
+            array_push($content_search, $data);
+        }
         return view('/public/public_view', [
-            'contents' => $contents,
+            'contents' => $content_search,
             'currentPage' => $page
         ]);
     }
@@ -37,8 +50,6 @@ class PublicController
         $data = json_decode($request->input('data'), true);
         return view('/public/selected_product', compact('data'));
     }
-
-
 
 
 }

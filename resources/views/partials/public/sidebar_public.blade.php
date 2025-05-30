@@ -10,13 +10,7 @@
         <div class="navbar-content">
             <ul class="pc-navbar">
                 <li class="pc-item">
-                    <a href="{{ route('dashboard.form') }}" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-dashboard"></i></span>
-                        <span class="pc-mtext">Dashboard</span>
-                    </a>
-                </li>
-                <li class="pc-item">
-                    <a href="{{ route('users.form') }}" class="pc-link">
+                    <a href="{{ route('public_view.form') }}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-brand-chrome"></i></span>
                         <span class="pc-mtext">Medical Market</span>
                     </a>
