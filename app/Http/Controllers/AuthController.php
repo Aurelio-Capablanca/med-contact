@@ -20,7 +20,6 @@ class AuthController extends Controller
         }
         Auth::login($user);
         $request->session()->regenerate();
-        //dd(Auth::user());
         return redirect()->intended('/dashboard');
     }
 
