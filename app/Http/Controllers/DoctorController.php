@@ -19,14 +19,24 @@ class DoctorController
         $doctors = Doctors::all();
         return view('doctors', compact('doctors'));
     }
+
     public function retrieveModal($id): View|Factory
     {
         $doctor = DB::connection('mysql_logic')
-            ->table('Doctors','d')
+            ->table('Doctors', 'd')
             ->select('d.*')
-            ->where('d.idDoctor',$id)
+            ->where('d.idDoctor', $id)
             ->first();
-        return view('modals/edit-doctor',compact('doctor'));
+        return view('modals/edit-doctor', compact('doctor'));
+    }
+
+    public function seeDirectory(): View|\Illuminate\Foundation\Application|Factory
+    {
+        $doctors = DB::connection('mysql_logic')
+            ->table('Doctors', 'd')
+            ->select('d.nameDoctor','d.lastnameDoctor','d.emailDoctor','d.phoneDoctor','d.descriptionDoctor')
+            ->get();
+        return view('/public/directory', compact('doctors'));
     }
 
     // Logical Operations
@@ -44,7 +54,6 @@ class DoctorController
         return redirect()->route('doctors.form')
             ->with('success', 'Doctor Updated');
     }
-
 
 
 }

@@ -23,6 +23,10 @@ Route::middleware('web')->group(function () {
         [PublicController::class, 'index'])
         ->name('public_view.form');
 
+    Route::get('/public/directory',
+        [DoctorController::class, 'seeDirectory'])
+        ->name('directory.form');
+
     Route::post('/public/search',
         [PublicController::class, 'searcher'])
         ->name('public.search');

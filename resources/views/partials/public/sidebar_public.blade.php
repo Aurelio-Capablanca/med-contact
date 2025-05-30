@@ -16,7 +16,7 @@
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="{{ route('doctors.form') }}" class="pc-link">
+                    <a href="{{ route('directory.form') }}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-brand-chrome"></i></span>
                         <span class="pc-mtext">Doctor Directory</span>
                     </a>
