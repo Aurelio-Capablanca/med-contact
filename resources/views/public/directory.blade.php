@@ -1,5 +1,5 @@
 @extends('layouts.public.app_public')
-@section('title', 'Catalogue')
+@section('title', 'Directory')
 @section('content')
     <div class="row">
         <div class="col-sm-12">
